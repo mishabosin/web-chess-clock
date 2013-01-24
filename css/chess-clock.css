@@ -1,0 +1,14 @@
+.clock-display {
+    font-size: 80px;
+    padding: 40px;
+    text-align: center;
+}
+.instructions {
+    text-align: center;
+}
+.pause {
+    display: block;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}

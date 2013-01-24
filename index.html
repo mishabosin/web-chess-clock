@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app="chessclock" lang="en">
+<head>
+    <title>Chess Clock</title>
+    <!--Third party libraries-->
+    <script src="libs/jquery-1.9.0.min.js"></script>
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="libs/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <!--Chess clock resources-->
+    <script src="js/chess-clock.js"></script>
+    <script src="js/chess-clock-ctrl.js"></script>
+    <link href="css/chess-clock.css" rel="stylesheet">
+</head>
+<body ng-controller="ChessClockCtrl">
+
+<!--Navbar-->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="brand">Chess Clock</div>
+            <ul class="nav">
+                <li>
+                    <a ng-click="reset()">Reset</a>
+                </li>
+                <li>
+                    <a href="#settingsModal" data-toggle="modal">Settings...</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--Timers-->
+<div class="row-fluid" ng-click="move()">
+    <div class="span5 offset1">
+        <div class="well" ng-class="getTimerClass(timer1)">
+            <h1 class="clock-display">{{timer1.toString()}}</h1>
+        </div>
+    </div>
+    <div class="span5">
+        <div class="well" ng-class="getTimerClass(timer2)">
+            <h1 class="clock-display">{{timer2.toString()}}</h1>
+        </div>
+    </div>
+</div>
+
+<!--Footer-->
+<p class="muted instructions">Press spacebar or click the clock after each move.</p>
+<div class="btn btn-large pause" ng-click="togglePause()">{{actionLabel()}}</div>
+
+<!--Settings modal-->
+<div id="settingsModal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Clock Settings</h3>
+    </div>
+
+    <div class="modal-body">
+        <form name="presetsForm">
+            <div class="well well-small pull-left">
+                <strong>{{timer1.name}}</strong>
+                <div>
+                    <select ng-model="preset1" ng-options="preset.name for preset in PRESETS"
+                            ng-change="assignPreset1()"></select>
+                </div>
+                <div>Time</div>
+                <div class="input-append">
+                    <input class="span1" type="number" min="0" ng-model="setting1.minutes" required>
+                    <span class="add-on">m</span>
+                </div>
+                <div class="input-append">
+                    <input class="span1" type="number" min="0" max="59" ng-model="setting1.seconds" required>
+                    <span class="add-on">s</span>
+                </div>
+                <div>Increment</div>
+                <div class="input-append">
+                    <input class="span1" type="number" min="0" max="10" ng-model="setting1.increment" required>
+                    <span class="add-on">s</span>
+                </div>
+            </div>
+            <div class="well well-small pull-right">
+                <strong>{{timer2.name}}</strong>
+                <div>
+                    <select ng-model="preset2" ng-options="preset.name for preset in PRESETS"
+                            ng-change="assignPreset2()"></select>
+                </div>
+                <div>Time</div>
+                <div class="input-append">
+                    <input class="span1" type="number" min="0" ng-model="setting2.minutes" required>
+                    <span class="add-on">m</span>
+                </div>
+                <div class="input-append">
+                    <input class="span1" type="number" min="0" max="59" ng-model="setting2.seconds" required>
+                    <span class="add-on">s</span>
+                </div>
+                <div>Increment</div>
+                <div class="input-append">
+                    <input class="span1" type="number" min="0" max="10" ng-model="setting2.increment" required>
+                    <span class="add-on">s</span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button href="#" class="btn btn-primary" ng-click="updateClockSettings()"
+                ng-disabled="presetsForm.$invalid || invalidSetting(preset1) || invalidSetting(preset2)">Save</button>
+        <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+    </div>
+</div>
+
+<!--TODO: game rules info-->
+<!--TODO: fork me-->
+</body>
+</html>
