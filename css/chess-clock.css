@@ -3,6 +3,12 @@
     padding: 40px;
     text-align: center;
 }
+.clock-setting {
+    width: 41%;
+}
+.timer-title {
+    text-align: center;
+}
 .instructions {
     text-align: center;
 }

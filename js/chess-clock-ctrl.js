@@ -35,10 +35,10 @@ function ChessClockCtrl($scope, $log, Timer, PRESETS) {
     $scope.move = function () {
         $log.log("Move made");
         if ($scope.timer1.isTicking) {
-            $scope.timer1.stop();
+            $scope.timer1.stop(true);
             $scope.timer2.start();
         } else if ($scope.timer2.isTicking) {
-            $scope.timer2.stop();
+            $scope.timer2.stop(true);
             $scope.timer1.start();
         } else if (!$scope.timer1.isOutOfTime && !$scope.timer2.isOutOfTime) {
             // Make the first move
@@ -51,8 +51,8 @@ function ChessClockCtrl($scope, $log, Timer, PRESETS) {
      * Reset both clocks to the last used full time
      */
     $scope.reset = function () {
-        $scope.timer1.stop();
-        $scope.timer2.stop();
+        $scope.timer1.stop(false);
+        $scope.timer2.stop(false);
         $scope.timer1.isOutOfTime = false;
         $scope.timer2.isOutOfTime = false;
         $scope.updateClockSettings();
@@ -92,11 +92,11 @@ function ChessClockCtrl($scope, $log, Timer, PRESETS) {
     $scope.togglePause = function () {
         if ($scope.timer1.isTicking) {
             $log.log("Pausing " + $scope.timer1.name);
-            $scope.timer1.stop();
+            $scope.timer1.stop(false);
             nextToMove = $scope.timer1;
         } else if ($scope.timer2.isTicking) {
             $log.log("Pausing " + $scope.timer2.name);
-            $scope.timer2.stop();
+            $scope.timer2.stop(false);
             nextToMove = $scope.timer2;
         } else if ($scope.timer1.isOutOfTime || $scope.timer2.isOutOfTime) {
             $scope.reset();

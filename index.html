@@ -59,46 +59,48 @@
 
     <div class="modal-body">
         <form name="presetsForm">
-            <div class="well well-small pull-left">
-                <strong>{{timer1.name}}</strong>
+            <div class="well pull-left clock-setting">
+                <h4 class="timer-title">{{timer1.name}}</h4>
+                <div>Preset</div>
                 <div>
                     <select ng-model="preset1" ng-options="preset.name for preset in PRESETS"
-                            ng-change="assignPreset1()"></select>
+                            ng-change="assignPreset1()" class="input-medium"></select>
                 </div>
                 <div>Time</div>
-                <div class="input-append">
-                    <input class="span1" type="number" min="0" ng-model="setting1.minutes" required>
-                    <span class="add-on">m</span>
+                <div class="input-prepend">
+                    <span class="add-on">min</span>
+                    <input class="span1" type="number" min="0" max="90" ng-model="setting1.minutes" required>
                 </div>
-                <div class="input-append">
+                <div class="input-prepend">
+                    <span class="add-on">sec</span>
                     <input class="span1" type="number" min="0" max="59" ng-model="setting1.seconds" required>
-                    <span class="add-on">s</span>
                 </div>
                 <div>Increment</div>
-                <div class="input-append">
+                <div class="input-prepend">
+                    <span class="add-on">sec</span>
                     <input class="span1" type="number" min="0" max="10" ng-model="setting1.increment" required>
-                    <span class="add-on">s</span>
                 </div>
             </div>
-            <div class="well well-small pull-right">
-                <strong>{{timer2.name}}</strong>
+            <div class="well pull-right clock-setting">
+                <h4 class="timer-title">{{timer2.name}}</h4>
+                <div>Preset</div>
                 <div>
                     <select ng-model="preset2" ng-options="preset.name for preset in PRESETS"
-                            ng-change="assignPreset2()"></select>
+                            ng-change="assignPreset2()" class="input-medium"></select>
                 </div>
                 <div>Time</div>
-                <div class="input-append">
-                    <input class="span1" type="number" min="0" ng-model="setting2.minutes" required>
-                    <span class="add-on">m</span>
+                <div class="input-prepend">
+                    <span class="add-on">min</span>
+                    <input class="input-small" type="number" min="0" max="90" ng-model="setting2.minutes" required>
                 </div>
-                <div class="input-append">
+                <div class="input-prepend">
+                    <span class="add-on">sec</span>
                     <input class="span1" type="number" min="0" max="59" ng-model="setting2.seconds" required>
-                    <span class="add-on">s</span>
                 </div>
                 <div>Increment</div>
-                <div class="input-append">
+                <div class="input-prepend">
+                    <span class="add-on">sec</span>
                     <input class="span1" type="number" min="0" max="10" ng-model="setting2.increment" required>
-                    <span class="add-on">s</span>
                 </div>
             </div>
         </form>
@@ -106,7 +108,7 @@
 
     <div class="modal-footer">
         <button href="#" class="btn btn-primary" ng-click="updateClockSettings()"
-                ng-disabled="presetsForm.$invalid || invalidSetting(preset1) || invalidSetting(preset2)">Save</button>
+                ng-disabled="presetsForm.$invalid || invalidSetting(preset1) || invalidSetting(preset2)">Set</button>
         <a href="#" class="btn" data-dismiss="modal">Cancel</a>
     </div>
 </div>

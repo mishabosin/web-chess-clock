@@ -97,9 +97,11 @@ angular.module('chessclock', [])
         /**
          * Stop the clock from advancing and handle increment
          */
-        Timer.prototype.stop = function () {
+        Timer.prototype.stop = function (isIncrementAllowed) {
             this.isTicking = false;
-            this.time += this.increment;
+            if (isIncrementAllowed) {
+                this.time += this.increment;
+            }
             $log.log("Stopping " + this.name + " with " + this.time + " remaining");
         };
 
