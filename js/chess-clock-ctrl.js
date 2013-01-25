@@ -14,8 +14,8 @@ function ChessClockCtrl($scope, $log, Timer, PRESETS) {
 
     // Assign the presets and initial clock settings:
     $scope.PRESETS = PRESETS;
-    $scope.preset1 = PRESETS[0];
-    $scope.preset2 = PRESETS[0];
+    $scope.preset1 = PRESETS[1];
+    $scope.preset2 = PRESETS[1];
     $scope.setting1 = $.extend({}, $scope.preset1);
     $scope.setting2 = $.extend({}, $scope.preset2);
 
@@ -60,7 +60,7 @@ function ChessClockCtrl($scope, $log, Timer, PRESETS) {
     };
 
     $scope.showSettings = function () {
-        $scope.togglePause();
+        $scope.togglePause(true);
         $('#settingsModal').modal('show');
     };
 
@@ -93,8 +93,9 @@ function ChessClockCtrl($scope, $log, Timer, PRESETS) {
     /**
      * If a clock is ticking, make it stop.
      * If no clock is ticking, make one start.
+     * @param isForcedStop - if true, do not restart the clock even if clock is stopped
      */
-    $scope.togglePause = function () {
+    $scope.togglePause = function (isForcedStop) {
         if ($scope.timer1.isTicking) {
             $log.log("Pausing " + $scope.timer1.name);
             $scope.timer1.stop(false);
@@ -105,7 +106,7 @@ function ChessClockCtrl($scope, $log, Timer, PRESETS) {
             nextToMove = $scope.timer2;
         } else if ($scope.timer1.isOutOfTime || $scope.timer2.isOutOfTime) {
             $scope.reset();
-        } else {
+        } else if (!isForcedStop){
             nextToMove.start();
             nextToMove = null;
         }
