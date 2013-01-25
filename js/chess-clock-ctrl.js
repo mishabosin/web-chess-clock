@@ -22,12 +22,11 @@ function ChessClockCtrl($scope, $log, Timer, PRESETS) {
     /**
      * Assign the selected settings to each timer
      */
-    $scope.updateClockSettings = function () {
+    function updateClockSettings () {
         $scope.timer1.setFromPreset($scope.setting1);
         $scope.timer2.setFromPreset($scope.setting2);
-        $('#settingsModal').modal('hide');
-    };
-    $scope.updateClockSettings();
+    }
+    updateClockSettings();
 
     /**
      * Triggered after each move.  Stop the active timer and start the waiting one.
@@ -55,8 +54,14 @@ function ChessClockCtrl($scope, $log, Timer, PRESETS) {
         $scope.timer2.stop(false);
         $scope.timer1.isOutOfTime = false;
         $scope.timer2.isOutOfTime = false;
-        $scope.updateClockSettings();
+        updateClockSettings();
         nextToMove = $scope.timer1;
+        $('#settingsModal').modal('hide'); // will do nothing if no modal
+    };
+
+    $scope.showSettings = function () {
+        $scope.togglePause();
+        $('#settingsModal').modal('show');
     };
 
     /**

@@ -25,7 +25,7 @@
                     <a ng-click="reset()">Reset</a>
                 </li>
                 <li>
-                    <a href="#settingsModal" data-toggle="modal">Settings...</a>
+                    <a ng-click="showSettings()">Settings...</a>
                 </li>
             </ul>
         </div>
@@ -107,7 +107,7 @@
     </div>
 
     <div class="modal-footer">
-        <button href="#" class="btn btn-primary" ng-click="updateClockSettings()"
+        <button href="#" class="btn btn-primary" ng-click="reset()"
                 ng-disabled="presetsForm.$invalid || invalidSetting(preset1) || invalidSetting(preset2)">Set</button>
         <a href="#" class="btn" data-dismiss="modal">Cancel</a>
     </div>
