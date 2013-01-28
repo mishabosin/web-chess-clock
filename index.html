@@ -22,10 +22,15 @@
             <div class="brand">Chess Clock</div>
             <ul class="nav">
                 <li>
-                    <a ng-click="reset()">Reset</a>
+                    <a ng-click="reset()"><i class="icon-repeat"></i> Reset</a>
                 </li>
                 <li>
-                    <a ng-click="showSettings()">Settings...</a>
+                    <a ng-click="showSettings()"><i class="icon-edit"></i> Settings...</a>
+                </li>
+            </ul>
+            <ul class="nav pull-right">
+                <li>
+                    <a href="https://github.com/mishabosin/web-chess-clock"><i class="icon-random"></i> Fork me on GitHub</a>
                 </li>
             </ul>
         </div>
@@ -34,13 +39,13 @@
 
 <!--Timers-->
 <div class="row-fluid" ng-click="move()">
-    <div class="span5 offset1">
-        <div class="well" ng-class="getTimerClass(timer1)">
+    <div class="span6">
+        <div class="well left-clock" ng-class="getTimerClass(timer1)">
             <h1 class="clock-display">{{timer1.toString()}}</h1>
         </div>
     </div>
-    <div class="span5">
-        <div class="well" ng-class="getTimerClass(timer2)">
+    <div class="span6">
+        <div class="well right-clock" ng-class="getTimerClass(timer2)">
             <h1 class="clock-display">{{timer2.toString()}}</h1>
         </div>
     </div>
@@ -113,7 +118,5 @@
     </div>
 </div>
 
-<!--TODO: game rules info-->
-<!--TODO: fork me-->
 </body>
 </html>

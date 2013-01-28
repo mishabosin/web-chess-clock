@@ -1,3 +1,9 @@
+.left-clock {
+    margin-left: 20px;
+}
+.right-clock {
+    margin-right: 20px;
+}
 .clock-display {
     font-size: 100px;
     padding: 60px;
